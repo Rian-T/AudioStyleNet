@@ -111,8 +111,12 @@ class AudioStyleNet:
         else:
             test_latent = test_latent.unsqueeze(0).to(self.device)
 
+        print(test_latent.shape)
+
         if test_latent.shape[1] == 1:
-            test_latent = test_latent.repeat(1, 18, 1)
+            test_latent = torch.squeeze(test_latent,0)
+            print(test_latent.shape)
+            #test_latent = test_latent.repeat(1, 18, 1)
 
         # Visualize
         # img = self.g([test_latent], input_is_latent=True, noise=self.g.noises)[0]
